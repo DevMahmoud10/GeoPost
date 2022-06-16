@@ -1,32 +1,54 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>GeoPost</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com"> 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="../static/geo_post_logo.png">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
 </head>
+
 <body>
     <img src="../static/geo_post_logo.png">
     <br>
-    <form action="get_postal_code" method="post">
+    <form id="geopost_form" action="get_postal_code" method="post" onsubmit="ValidateTextBox()">
         {% if error %}
         <p><strong>{{ error }}</strong></p>
         {% endif %}
         <br>
-        <input type="text" name="latitude" placeholder="Latitude" >
+        <input type="text" name="latitude" placeholder="Latitude" id="latitude">
         <br>
-        <input type="text" name="longitude" placeholder="Longitude" >
+        <input type="text" name="longitude" placeholder="Longitude" id="longitude">
         <br>
-        <input type="submit" value="Find Postal Code" id="find">
+        <input type="button" value="Find Postal Code" id="find", onclick="ValidateTextBox()">
         <br><br><br>
         {% if postcode %}
-        <h1>Geo Coordinates: {{ coordinates }}</h1>
-        <br>
-        <h1>Postal Code: {{ postcode }}</h1>
+        <table class="styled-table">
+            <tr>
+                <td>Geo Coordinates</td>
+                <td>Postal Code</td>
+            </tr>
+            <tr>
+                <td>{{coordinates}}</td>
+                <td>{{ postcode }}</td>
+            </tr>
+        </table>
         {% endif %}
     </form>
+    <script>
+        function ValidateTextBox() {
+            if ((document.getElementById("latitude").value.length == 0) || (document.getElementById("longitude").value.length == 0)) {
+                alert("Enter Geo Coordinates")
+            }
+            else{
+            document.getElementById('geopost_form').submit(); 
+                
+            }
+
+    };
+        
+    </script>
 </body>
