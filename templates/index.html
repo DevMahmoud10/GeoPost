@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>GeoPost</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../static/geo_post_logo.png">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+</head>
+<body>
+    <img src="../static/geo_post_logo.png">
+    <br>
+    <form action="get_postal_code" method="post">
+        {% if error %}
+        <p><strong>{{ error }}</strong></p>
+        {% endif %}
+        <br>
+        <input type="text" name="latitude" placeholder="Latitude" >
+        <br>
+        <input type="text" name="longitude" placeholder="Longitude" >
+        <br>
+        <input type="submit" value="Find Postal Code" id="find">
+        <br><br><br>
+        {% if postcode %}
+        <h1>Geo Coordinates: {{ coordinates }}</h1>
+        <br>
+        <h1>Postal Code: {{ postcode }}</h1>
+        {% endif %}
+    </form>
+</body>
