@@ -8,3 +8,4 @@ Just enter valid geo location coordinates AKA "latitude" and "longitude"
 then hit Find button to get postal code coordinates.
 
 ![Demo](static/demo.png)
+then hit Find button to get postal code of the entered coordinates.
